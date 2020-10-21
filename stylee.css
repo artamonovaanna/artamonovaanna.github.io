@@ -1,0 +1,28 @@
+.wrap{
+	box-sizing: border-box;
+	width: 500px;
+	height: 600px;
+	border: 6px solid grey;
+	border-radius: 20px;
+	overflow: auto;
+	margin: 1% 7%;
+	float: left;
+}
+.card{
+	float: right;
+}
+p{
+	padding: 10px;
+}
+img{
+	width: 300px;
+	margin: auto;
+	display: block;
+	border: 6px solid grey;
+	border-radius: 20px;
+}
+a{
+	background-color: #5bded6;
+	color: white;
+
+}
