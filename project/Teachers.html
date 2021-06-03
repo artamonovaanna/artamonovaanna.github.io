@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachers</title>
+  <link rel="stylesheet" type="text/css" href="MAINCSS.css">
+  <link rel="stylesheet" type="text/css" href="GROUPSCSS.css">
+  <style type="text/css">
+    body{
+      background-color: #f4f5f6;
+    }
+
+   
+.Avatar {
+  width: 48px;
+  height: 48px;
+  margin: 0px 0px 0 0px;
+  margin-top: -11px;
+  object-fit: contain;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="ttop"><a href="main.html"><img class="logo" style="margin-left: -5px;" src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/42C07C82-6777-40B6-8A93-A8D8837C4339.png"></a><div class="dov">Довідник наукового ліцею «Політ»</div >
+    <div class="topnadp" >
+    <div class="nad1"><a href="index.html" class="nad11">Головна</a></div>
+    <div class="nad2"><a href="Groups.html" class="nad11">Групи</a></div>
+    <div class="nad3"><a href="Teachers.html" class="nad11">Учителі</a></div>
+    <div class="nad4"><a href="contacts.html" class="nad11">Контакти</a></div>
+  </div>
+    </div>
+    
+    <div class="group" id="group">Учителі</div>
+    <div style="height: 40px;"></div>
+    <div class="poisk"><img src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/DBBAEB5C-926B-437E-98F9-FAD8B2AD523A.svg" class="pos" alt=""><input type="text" name="" class="input" id="input"></div>
+    <div style="height: 20px;"></div>
+    <div class="osnsp">
+    <div class="sp1" id="ssp">
+      <div class="spp1" style="margin-left:3%; width:200px; font-family: 'Rubik', sans-serif; font-weight: bold;">Фото</div>
+      <div class="spp2" style="width:300px; margin-left: 18%; font-family: 'Rubik', sans-serif; font-weight: bold;">ПІБ</div>
+    </div><div class="spapi" id="spapi">
+    </div>
+    </div>
+
+<div class="ddown" style="bottom: 0%;">
+  <img src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/42C07C82-6777-40B6-8A93-A8D8837C4339.png" class="logo2" alt="">
+  <div style="height: 10px;"></div>
+  <div class="pl">© Веб-сайт «Довідник наукового ліцею «Політ», 2021. Усі права захищені.</div>
+  </div>
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    window.addEventListener("load", async function() {
+        fetch("https://alexmarchukprod.com.ua/groups")
+            .then((result) => {
+                result.json().then((data) => {
+                    data.forEach((item) => {
+                        const output = document.createElement("div");
+                        output.className = "spapi1"
+                        output.innerHTML = `<article class="spp1" style="margin-left:3%;" ><img class="Avatar" src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/55DC0DCE-3C43-4325-9E3D-2DAE637C02E9.png" alt=""></article>
+                        <article class="spp2" style="margin-left:18%;">${item.formMaster.surname} ${item.formMaster.name} ${item.formMaster.patronymic}</article>
+                        <a href="Teachers_item_${item.formMaster.id}.html" style="position: absolute; margin-left: 66%;"><img class="asd" src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/93ACFCD3-76ED-4D7E-B778-192BA2F233E9.svg" alt=""></a>`;
+                        document.querySelector('.spapi').appendChild(output)
+                    })
+                })
+            })
+    });
+
+  </script>
+ <script>
+window.onload = () => {
+	let input = document.querySelector('#input');
+
+	input.oninput = function() {
+		let value = this.value.trim();
+		let list = document.querySelectorAll('.spapi div');
+
+		 if (value) {
+		 	list.forEach(elem => {
+		 		if (elem.innerText.search(value) == -1) {
+		 			elem.classList.add('hide');
+		 		}
+		 	});
+		 } else {
+       var ssp = " ";
+		 	list.forEach(elem => {
+		 		elem.classList.remove('hide');
+		 	});
+		 }
+    }
+  }
+  </script>
+</body>
+</html>
