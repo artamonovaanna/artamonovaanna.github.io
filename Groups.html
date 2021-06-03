@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+    <title>GROUPS</title>
+    <link rel="stylesheet" type="text/css" href="MAINCSS.css">
+    <link rel="stylesheet" type="text/css" href="GROUPSCSS.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">  
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet"><link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Playfair+Display&family=Rubik:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ledger&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="ttop"><a href="index.html"><img class="logo" style="margin-left: -5px;" src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/42C07C82-6777-40B6-8A93-A8D8837C4339.png"></a><div class="dov">Довідник наукового ліцею «Політ»</div >
+    <div class="topnadp" >
+    <div class="nad1"><a href="index.html" class="nad11">Головна</a></div>
+    <div class="nad2"><a href="Groups.html" class="nad11">Групи</a></div>
+    <div class="nad3"><a href="Teachers.html" class="nad11">Учителі</a></div>
+    <div class="nad4"><a href="contacts.html" class="nad11">Контакти</a></div>
+  </div>
+    </div>
+<div class="group" id="group">Групи</div>
+<div style="height: 40px;"></div>
+<div class="poisk"><img src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/DBBAEB5C-926B-437E-98F9-FAD8B2AD523A.svg" class="pos" alt=""><input type="text" name="" class="input" id="input"></div>
+<div style="height: 20px;"></div>
+<div class="osnsp">
+<div class="zam"><div class="za" style="font-family: 'Rubik', sans-serif;">Сортувати за:</div>
+<select id="country" style="margin-top: -2px; margin-left: 0px; color: #5c6470; font-family: 'Rubik', sans-serif; ">
+  <option value="Ukraine">Замовченням</option>
+  <option value="USA">Від А до Я</option>
+  <option value="France">Від Я до А</option>
+</select></div>
+
+<div class="sp1" id="ssp">
+  <div class="spp1" style="margin-left:3%; width:200px; font-family: 'Rubik', sans-serif; font-weight: bold;">Назва групи</div>
+  <div class="spp2" style="width:300px; margin-left: 18%; font-family: 'Rubik', sans-serif; font-weight: bold;">ПІБ класного керівника</div>
+  <div class="spp3" style="width:250px; margin-left: 50%; font-family: 'Rubik', sans-serif; font-weight: bold;">Кількість учнів</div>
+</div><div class="spapi" id="spapi">
+</div>
+</div>
+
+
+  <div class="ddown" style="bottom: 0%;">
+    <div style="width: 20px; margin-left: 48.5%;"><a href="main.html"><img src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/42C07C82-6777-40B6-8A93-A8D8837C4339.png" class="logo2" alt=""></a></div>
+  <div style="height: 10px;"></div>
+  <div class="pl">© Веб-сайт «Довідник наукового ліцею «Політ», 2021. Усі права захищені.</div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    window.addEventListener("load", async function() {
+        fetch("https://alexmarchukprod.com.ua/groups")
+            .then((result) => {
+                result.json().then((data) => {
+                    data.forEach((item) => {
+                        const output = document.createElement("div");
+                        output.className = "spapi1"
+                        output.innerHTML = `<article class="spp1" style="margin-left:3%;" >${item.title}</article>
+                        <article class="spp2" style="margin-left:18%;">${item.formMaster.surname} ${item.formMaster.name} ${item.formMaster.patronymic}</article>
+                        <article class="spp3" style="margin-left:50%;">${item.students.length}</article><a href="group_item_${item.formMaster.id}.html" style="position: absolute; margin-left: 66%;"><img class="asd" src="https://cdn.zeplin.io/60ac3e4a3ef061930777befd/assets/93ACFCD3-76ED-4D7E-B778-192BA2F233E9.svg" alt=""></a>`;
+                        document.querySelector('.spapi').appendChild(output)
+                    })
+                })
+            })
+    });
+
+  </script>
+ <script>
+window.onload = () => {
+	let input = document.querySelector('#input');
+
+	input.oninput = function() {
+		let value = this.value.trim();
+		let list = document.querySelectorAll('.spapi div');
+
+		 if (value) {
+		 	list.forEach(elem => {
+		 		if (elem.innerText.search(value) == -1) {
+		 			elem.classList.add('hide');
+		 		}
+		 	});
+		 } else {
+       var ssp = " ";
+		 	list.forEach(elem => {
+		 		elem.classList.remove('hide');
+		 	});
+		 }
+    }
+  }
+  </script>
+</body>
+</html>
